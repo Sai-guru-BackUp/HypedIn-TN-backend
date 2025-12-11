@@ -89,7 +89,10 @@ const register = async (req, res) => {
       type: "registration",
     });
 
-    await sendOTPEmail(email, otp, "registration");
+   // await sendOTPEmail(email, otp, "registration");
+    sendOTPEmail(email, otp, "registration")
+  .then(() => console.log(`OTP sent to ${email}`))
+  .catch(err => console.error(`Failed to send OTP: ${err}`));
 
     res.status(201).json({
       message:
